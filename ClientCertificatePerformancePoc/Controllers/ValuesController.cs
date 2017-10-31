@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Caching;
-using System.Web.Http;
-using ClientCertificatePerformancePoc.Logging;
+﻿using System.Web.Http;
 using ClientCertificatePerformancePoc.Security;
 
 namespace ClientCertificatePerformancePoc.Controllers
@@ -10,12 +7,9 @@ namespace ClientCertificatePerformancePoc.Controllers
     {
         // GET api/values
         [CertificateAuthorization]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            CacheItem cacheItem = MemoryCache.Default.GetCacheItem("CertificateAuthorizationMessages");
-            if (cacheItem == null) return new List<string>();
-
-            return ((ILogDestination) cacheItem.Value).Print();
+            return "value";
         }
     }
 }

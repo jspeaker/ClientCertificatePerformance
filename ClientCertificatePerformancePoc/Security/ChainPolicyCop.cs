@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Caching;
 using System.Security.Cryptography.X509Certificates;
-using ClientCertificatePerformancePoc.Logging;
 
 namespace ClientCertificatePerformancePoc.Security
 {
@@ -12,15 +11,6 @@ namespace ClientCertificatePerformancePoc.Security
 
     public class ChainPolicyCop : IChainPolicyCop
     {
-        private readonly ILogDestination _logDestination;
-
-        public ChainPolicyCop() : this(new TelemetryClientWrapper()) { }
-
-        public ChainPolicyCop(ILogDestination logDestination)
-        {
-            _logDestination = logDestination;
-        }
-
         public bool Legal(X509Certificate2 certificate)
         {
             if (!certificate.Populated()) return false;
@@ -28,26 +18,17 @@ namespace ClientCertificatePerformancePoc.Security
             IAuthCacheItem cachedAuthItem = CachedAuthItem(certificate);
             if (cachedAuthItem.Populated()) return cachedAuthItem.Valid();
 
-            X509Chain x509Chain = LegalChain();
-
-            x509Chain.Build(certificate);
+            LegalChain().Build(certificate);
 
             bool certificateIsValid = certificate.Verify();
-            HandleChainStatusErrors(x509Chain);
 
-            MemoryCache.Default.AddOrGetExisting(certificate.Thumbprint ?? string.Empty, new AuthCacheItem(certificate, certificateIsValid), new CacheItemPolicy
-            {
-                AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
-            });
+            MemoryCache.Default.AddOrGetExisting(certificate.Thumbprint ?? string.Empty,
+                new AuthCacheItem(certificate, certificateIsValid),
+                new CacheItemPolicy
+                {
+                    AbsoluteExpiration = DateTimeOffset.Now.AddHours(12)
+                });
             return certificateIsValid;
-        }
-
-        private void HandleChainStatusErrors(X509Chain x509Chain)
-        {
-            foreach (X509ChainStatus status in x509Chain.ChainStatus)
-            {
-                _logDestination.Trace($"LegalChain status: {status.StatusInformation}");
-            }
         }
 
         private X509Chain LegalChain()

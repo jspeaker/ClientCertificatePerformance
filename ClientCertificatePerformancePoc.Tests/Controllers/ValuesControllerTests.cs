@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using ClientCertificatePerformancePoc.Controllers;
-using ClientCertificatePerformancePoc.Logging;
 using FluentAssertions;
+using Logging.Destinations;
+using Logging.Verbosity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClientCertificatePerformancePoc.Tests.Controllers
@@ -19,30 +20,13 @@ namespace ClientCertificatePerformancePoc.Tests.Controllers
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void GivenNoNotes_WhenCallingGet_ItShouldReturnEmptyList()
+        public void WhenCallingGet_ItShouldReturnValue()
         {
             ValuesController valuesController = new ValuesController();
-            IEnumerable<string> actual = valuesController.Get();
 
-            actual.Count().Should().Be(0);
-        }
+            string actual = valuesController.Get();
 
-        [TestMethod, TestCategory("Unit")]
-        public void GivenNotes_WhenCallingGet_ItShouldReturnPopulatedList()
-        {
-            ILogDestination notebook = new Notebook();
-            notebook.Trace("1");
-            notebook.Trace("2");
-            MemoryCache.Default.Set("CertificateAuthorizationMessages", notebook, new CacheItemPolicy
-            {
-                AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(5)
-            });
-            ValuesController valuesController = new ValuesController();
-            List<string> actual = valuesController.Get().ToList();
-
-            actual.Count.Should().Be(2);
-            actual.First().Should().Be("1");
-            actual.Last().Should().Be("2");
+            actual.Should().Be("value");
         }
     }
 }

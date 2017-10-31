@@ -70,7 +70,7 @@ namespace ClientCertificatePerformancePoc.Tests.Security
         }
 
         [TestMethod, TestCategory("Unit")]
-        public void GivenChainPolicyCopException_WhenCheckingAuthorization_ItShouldReturnFalse()
+        public void GivenChainPolicyCopException_WhenCheckingAuthorization_ItShouldThrowException()
         {
             IChainPolicyCop chainPolicyCop = new FakeChainPolicyCopy();
             AccessibleCertificateAuthorizationAttribute certificateAuthorizationAttribute = new AccessibleCertificateAuthorizationAttribute(chainPolicyCop);
@@ -78,10 +78,12 @@ namespace ClientCertificatePerformancePoc.Tests.Security
                 .ActionContext()
                 .WithClientCertificateHeader(new CertificateFile().Name("valid"));
 
-            bool authorized = certificateAuthorizationAttribute.Authorized(actionContext);
+            Action action = () =>
+            {
+                certificateAuthorizationAttribute.Authorized(actionContext);
+            };
 
-            authorized.Should().BeFalse();
-        }
+            action.ShouldThrow<Exception>();        }
     }
 
     public class AccessibleCertificateAuthorizationAttribute : CertificateAuthorizationAttribute

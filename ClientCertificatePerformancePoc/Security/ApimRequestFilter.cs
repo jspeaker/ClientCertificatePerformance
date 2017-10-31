@@ -26,7 +26,6 @@ namespace ClientCertificatePerformancePoc.Security
 
             // ReSharper disable once AssignNullToNotNullAttribute
             List<string> apimRequestVerificationHeaders = apimRequestVerification.ToList();
-            if (!apimRequestVerificationHeaders.Any()) ThrowNotFoundException();
             if (!apimRequestVerificationHeaders.First().Equals(_configuration.ApimRequestVerification())) ThrowNotFoundException();
 
             base.OnActionExecuting(actionContext);

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificatePerformanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificatePerformancePoc.Tests", "ClientCertificatePerformancePoc.Tests\ClientCertificatePerformancePoc.Tests.csproj", "{B110460F-D894-4306-BC4E-3ABCF1BA802B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interception", "Interception\Interception.csproj", "{5A45C52D-9142-4F84-BA67-57E249ADEEC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{F90804F1-5C31-4736-9234-8222BA947CEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B110460F-D894-4306-BC4E-3ABCF1BA802B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B110460F-D894-4306-BC4E-3ABCF1BA802B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B110460F-D894-4306-BC4E-3ABCF1BA802B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A45C52D-9142-4F84-BA67-57E249ADEEC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A45C52D-9142-4F84-BA67-57E249ADEEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A45C52D-9142-4F84-BA67-57E249ADEEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A45C52D-9142-4F84-BA67-57E249ADEEC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90804F1-5C31-4736-9234-8222BA947CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90804F1-5C31-4736-9234-8222BA947CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90804F1-5C31-4736-9234-8222BA947CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90804F1-5C31-4736-9234-8222BA947CEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

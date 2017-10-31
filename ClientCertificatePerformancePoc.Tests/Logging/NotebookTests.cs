@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ClientCertificatePerformancePoc.Logging;
 using FluentAssertions;
+using Logging.Destinations;
+using Logging.Verbosity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClientCertificatePerformancePoc.Tests.Logging
@@ -13,11 +14,11 @@ namespace ClientCertificatePerformancePoc.Tests.Logging
         [TestMethod, TestCategory("Unit")]
         public void WhenAddingNoteShouldNotThrow()
         {
-            ILogDestination notebook = new Notebook();
+            Notebook notebook = new Notebook();
 
             Action action = () =>
             {
-                notebook.Trace("note");
+                notebook.WriteEntry("Values", "note", new EventType("Information"));
             };
 
             action.ShouldNotThrow();
@@ -26,15 +27,15 @@ namespace ClientCertificatePerformancePoc.Tests.Logging
         [TestMethod, TestCategory("Unit")]
         public void GivenMultipleNotesShouldReturnCorrectPages()
         {
-            ILogDestination notebook = new Notebook();
-            notebook.Trace("1");
-            notebook.Trace("2");
+            Notebook notebook = new Notebook();
+            notebook.WriteEntry("Values", "1", new EventType("Information"));
+            notebook.WriteEntry("Values", "2", new EventType("Information"));
 
             List<string> actual = notebook.Print().ToList();
 
             actual.Count().Should().Be(2);
-            actual.First().Should().Be("1");
-            actual.Last().Should().Be("2");
+            actual.First().Should().Be("Values : 1 : Information");
+            actual.Last().Should().Be("Values : 2 : Information");
         }
     }
 }
