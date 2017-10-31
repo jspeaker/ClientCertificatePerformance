@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificateValidationPoc", "ClientCertificateValidationPoc\ClientCertificateValidationPoc.csproj", "{FE7981A5-04A9-46FD-A20D-AA3576ADE76E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificatePerformancePoc", "ClientCertificatePerformancePoc\ClientCertificatePerformancePoc.csproj", "{FE7981A5-04A9-46FD-A20D-AA3576ADE76E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificateValidationPoc.Tests", "ClientCertificateValidationPoc.Tests\ClientCertificateValidationPoc.Tests.csproj", "{B110460F-D894-4306-BC4E-3ABCF1BA802B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCertificatePerformancePoc.Tests", "ClientCertificatePerformancePoc.Tests\ClientCertificatePerformancePoc.Tests.csproj", "{B110460F-D894-4306-BC4E-3ABCF1BA802B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
