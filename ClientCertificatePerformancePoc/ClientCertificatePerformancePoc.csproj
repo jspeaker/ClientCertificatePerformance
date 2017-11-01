@@ -155,7 +155,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration\Configuration.cs" />
-    <Compile Include="Security\ApimRequestFilter.cs" />
+    <Compile Include="Security\ApimRequestFilterAttribute.cs" />
     <Compile Include="Security\AuthCacheItem.cs" />
     <Compile Include="Security\CertificateAuthorizationAttribute.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
